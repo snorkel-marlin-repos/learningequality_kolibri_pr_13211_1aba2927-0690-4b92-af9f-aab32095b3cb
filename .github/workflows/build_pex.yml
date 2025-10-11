@@ -20,7 +20,7 @@ jobs:
     outputs:
       pex-file-name: ${{ steps.get-pex-filename.outputs.pex-file-name }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/cache@v4
       with:
         path: ~/.cache/pip
@@ -29,7 +29,7 @@ jobs:
           ${{ runner.os }}-pip-
     - name: Install Python build dependencies
       run: pip install -r requirements/build.txt
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v5
       with:
         name: ${{ inputs.whl-file-name }}
         path: dist
