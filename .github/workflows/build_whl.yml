@@ -24,12 +24,12 @@ jobs:
       run: |
         apt-get -y -qq update
         apt-get install -y gettext sudo sqlite3 binutils-aarch64-linux-gnu binutils-arm-linux-gnueabihf git-lfs
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0
         lfs: true
     - name: Use Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: '18.x'
     - name: Install Yarn
@@ -69,14 +69,14 @@ jobs:
     - name: Get WHL filename
       id: get-whl-filename
       run: echo "whl-file-name=$(ls dist | grep .whl | cat)" >> $GITHUB_OUTPUT
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       with:
         name: ${{ steps.get-whl-filename.outputs.whl-file-name }}
         path: dist/${{ steps.get-whl-filename.outputs.whl-file-name }}
     - name: Get TAR filename
       id: get-tar-filename
       run: echo "tar-file-name=$(ls dist | grep .tar | cat)" >> $GITHUB_OUTPUT
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       with:
         name: ${{ steps.get-tar-filename.outputs.tar-file-name }}
         path: dist/${{ steps.get-tar-filename.outputs.tar-file-name }}
